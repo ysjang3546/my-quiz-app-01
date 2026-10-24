@@ -192,4 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
     quizView.classList.remove('hidden');
     renderQuestion();
   });
+
+  // 채점 결과 계산 (100점 만점 자동 환산)
+function calculateResult() {
+  let correctCount = 0;
+  quizData.forEach((quiz, idx) => {
+    if (userAnswers[idx] === quiz.answer) {
+      correctCount++;
+    }
+  });
+
+  const finalScore = Math.round((correctCount / quizData.length) * 100);
+
+  quizView.classList.add('hidden');
+  resultView.classList.remove('hidden');
+
+  scoreText.innerText = `${finalScore}점 (${correctCount} / ${quizData.length}개 맞힘)`;
+}
 });
