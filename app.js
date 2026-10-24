@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const questionPrompt = document.getElementById('question-prompt');
   const imageContainer = document.getElementById('image-container');
   const optionsContainer = document.getElementById('options-container');
+  const feedbackBox = document.getElementById('feedback-box');
+  const feedbackTitle = document.getElementById('feedback-title');
+  const feedbackExplanation = document.getElementById('feedback-explanation');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   const scoreText = document.getElementById('score-text');
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(error);
     });
 
-  // LaTeX 수식($...$)을 HTML로 변환하는 함수
+  // LaTeX 수식($...$)을 KaTeX로 변환하는 함수
   function renderLatex(text) {
     if (!text) return '';
     return text.replace(/\$(.*?)\$/g, (match, formula) => {
@@ -50,14 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderQuestion() {
     const currentQuiz = quizData[currentIndex];
 
-    // 프로그레스 바 및 상단 정보
+    // 프로그레스 바 및 상단 번호
     const progressPercent = ((currentIndex + 1) / quizData.length) * 100;
     progressBar.style.width = `${progressPercent}%`;
     questionNumber.innerText = `문제 ${currentIndex + 1} / ${quizData.length}`;
 
-    // 문제 텍스트 및 프롬프트 (수식 렌더링 적용)
+    // 본문 및 프롬프트
     questionText.innerHTML = renderLatex(currentQuiz.question);
-    
     if (currentQuiz.prompt) {
       questionPrompt.innerHTML = renderLatex(currentQuiz.prompt);
       questionPrompt.style.display = 'block';
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       questionPrompt.style.display = 'none';
     }
 
-    // 이미지 (도형)
+    // 이미지
     if (currentQuiz.image) {
       imageContainer.innerHTML = `<img src="${currentQuiz.image}" alt="문제 도형">`;
       imageContainer.style.display = 'block';
@@ -75,35 +77,65 @@ document.addEventListener('DOMContentLoaded', () => {
       imageContainer.style.display = 'none';
     }
 
-    // 보기 버튼 생성 (수식 렌더링 적용)
+    // 보기 버튼 생성
     optionsContainer.innerHTML = '';
     currentQuiz.options.forEach((opt, idx) => {
       const button = document.createElement('button');
       button.className = 'option-btn';
-      if (userAnswers[currentIndex] === idx) {
-        button.classList.add('selected');
-      }
       button.innerHTML = `${idx + 1}. ${renderLatex(opt)}`;
-      button.addEventListener('click', () => selectOption(idx));
+      button.addEventListener('click', () => handleOptionClick(idx));
       optionsContainer.appendChild(button);
     });
 
-    // 버튼 상태 제어
+    // 이미 푼 문제라면 정답/해설 상태 복원
+    if (userAnswers[currentIndex] !== null) {
+      showAnswerFeedback(userAnswers[currentIndex]);
+    } else {
+      feedbackBox.classList.add('hidden');
+    }
+
+    // 버튼 상태
     prevBtn.disabled = currentIndex === 0;
-    nextBtn.innerText = currentIndex === quizData.length - 1 ? '채점하기' : '다음';
+    nextBtn.innerText = currentIndex === quizData.length - 1 ? '결과 보기' : '다음';
   }
 
-  // 보기 선택
-  function selectOption(optionIndex) {
-    userAnswers[currentIndex] = optionIndex;
+  // 보기를 눌렀을 때 즉시 채점 및 피드백 표시
+  function handleOptionClick(selectedIndex) {
+    // 이미 답을 고른 상태면 재클릭 방지
+    if (userAnswers[currentIndex] !== null) return;
+
+    userAnswers[currentIndex] = selectedIndex;
+    showAnswerFeedback(selectedIndex);
+  }
+
+  // 정답/오답 표시 및 해설 박스 노출
+  function showAnswerFeedback(selectedIndex) {
+    const currentQuiz = quizData[currentIndex];
+    const isCorrect = selectedIndex === currentQuiz.answer;
     const buttons = optionsContainer.querySelectorAll('.option-btn');
+
+    // 보기 스타일 적용 및 클릭 비활성화
     buttons.forEach((btn, idx) => {
-      if (idx === optionIndex) {
-        btn.classList.add('selected');
-      } else {
-        btn.classList.remove('selected');
+      btn.style.cursor = 'default';
+      if (idx === currentQuiz.answer) {
+        btn.classList.add('correct'); // 정답 보기는 항상 초록색
+      } else if (idx === selectedIndex && !isCorrect) {
+        btn.classList.add('wrong');   // 오답을 골랐다면 빨간색
       }
     });
+
+    // 해설 박스 설정
+    feedbackBox.className = 'feedback-box';
+    if (isCorrect) {
+      feedbackBox.classList.add('correct-bg');
+      feedbackTitle.innerText = '⭕ 정답입니다!';
+    } else {
+      feedbackBox.classList.add('wrong-bg');
+      feedbackTitle.innerText = `❌ 틀렸습니다. (정답: ${currentQuiz.answer + 1}번)`;
+    }
+
+    feedbackExplanation.innerHTML = renderLatex(currentQuiz.explanation);
+    feedbackBox.classList.remove('hidden');
   }
 
   // 이전 버튼
@@ -114,10 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 다음 / 채점하기 버튼
+  // 다음 / 결과 보기 버튼
   nextBtn.addEventListener('click', () => {
     if (userAnswers[currentIndex] === null) {
-      alert('보기를 선택해 주세요!');
+      alert('보기를 선택해 정답을 확인해 주세요!');
       return;
     }
 
@@ -129,12 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 채점 결과 계산
+  // 최종 결과 화면
   function calculateResult() {
     let score = 0;
     quizData.forEach((quiz, idx) => {
       if (userAnswers[idx] === quiz.answer) {
-        score += 10; // 문제당 10점
+        score += 10;
       }
     });
 
