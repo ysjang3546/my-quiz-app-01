@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>초5 수학 퀴즈</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-card">
+    <header class="header">
+      <h1>✏️ 초5 수학 퀴즈</h1>
+      <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- 퀴즈 영역 -->
+      <div id="quiz-view">
+        <div class="quiz-info">
+          <span id="question-number">문제 1 / 10</span>
+        </div>
+
+        <h2 id="question-text">문제를 불러오는 중...</h2>
+        <div id="question-prompt" class="prompt-box"></div>
+        <div id="image-container" class="img-box"></div>
+
+        <div id="options-container" class="options-group">
+          <!-- 보기 버튼 생성 영역 -->
+        </div>
+
+        <div class="nav-buttons">
+          <button id="prev-btn" class="btn btn-sub" disabled>이전</button>
+          <button id="next-btn" class="btn btn-main">다음</button>
+        </div>
+      </div>
+
+      <!-- 결과 영역 -->
+      <div id="result-view" class="hidden">
+        <div class="result-box">
+          <div class="badge">채점 완료</div>
+          <h2 id="score-text">0 / 10</h2>
+          <p id="score-desc">수고하셨습니다!</p>
+        </div>
+        
+        <div class="result-actions">
+          <button id="retry-btn" class="btn btn-main">다시 풀기</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

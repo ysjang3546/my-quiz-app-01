@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "question": "다음 분수의 곱셈을 계산한 결과로 올바른 것은 무엇인가요?",
+    "prompt": "$\\frac{3}{4} \\times \\frac{2}{5}$",
+    "image": "",
+    "options": ["$\\frac{3}{10}$", "$\\frac{5}{9}$", "$\\frac{6}{20}$", "$\\frac{1}{2}$"],
+    "answer": 0,
+    "explanation": "분모는 분모끼리, 분자는 분자끼리 곱합니다. (3 × 2) / (4 × 5) = 6/20 = 3/10 (약분)"
+  },
+  {
+    "id": 2,
+    "question": "아래 직육면체의 모든 모서리의 길의 합은 몇 cm인가요?",
+    "prompt": "",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 130' width='100%' height='120'><path d='M30,80 L110,80 L110,20 L30,20 Z' fill='none' stroke='%23333' stroke-width='2'/><path d='M110,80 L160,50 L160,10 L110,20' fill='none' stroke='%23333' stroke-width='2'/><path d='M30,20 L80,10 L160,10' fill='none' stroke='%23333' stroke-width='2'/><path d='M30,80 L80,50 L160,50' fill='none' stroke='%23999' stroke-dasharray='3,3' stroke-width='1.5'/><path d='M80,50 L80,10' fill='none' stroke='%23999' stroke-dasharray='3,3' stroke-width='1.5'/><text x='70' y='98' font-size='12' font-family='sans-serif' fill='%232b6cb0'>가로 6cm</text><text x='120' y='75' font-size='12' font-family='sans-serif' fill='%232b6cb0'>세로 4cm</text><text x='5' y='55' font-size='12' font-family='sans-serif' fill='%232b6cb0'>높이 3cm</text></svg>",
+    "options": ["26 cm", "39 cm", "52 cm", "72 cm"],
+    "answer": 2,
+    "explanation": "직육면체의 모서리는 가로, 세로, 높이가 각각 4개씩 있습니다. (6 + 4 + 3) × 4 = 52 cm"
+  },
+  {
+    "id": 3,
+    "question": "다음 소수의 곱셈을 계산해 보세요.",
+    "prompt": "$1.25 \\times 0.4$",
+    "image": "",
+    "options": ["0.05", "0.5", "5.0", "0.45"],
+    "answer": 1,
+    "explanation": "125 × 4 = 500이고, 소수점 아래 자릿수가 총 3자리(2자리+1자리)이므로 0.500 = 0.5가 됩니다."
+  },
+  {
+    "id": 4,
+    "question": "아래 평행사변형의 넓이는 몇 ㎠ 인가요?",
+    "prompt": "",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 110' width='100%' height='110'><polygon points='40,80 140,80 170,20 70,20' fill='%23ebf8ff' stroke='%232b6cb0' stroke-width='2'/><line x1='70' y1='20' x2='70' y2='80' stroke='%23e53e3e' stroke-width='1.5' stroke-dasharray='3,3'/><path d='M70,72 L78,72 L78,80' fill='none' stroke='%23e53e3e' stroke-width='1'/><text x='80' y='98' font-size='12' font-family='sans-serif' fill='%232b6cb0'>밑변 10cm</text><text x='75' y='55' font-size='12' font-family='sans-serif' fill='%23e53e3e'>높이 6cm</text></svg>",
+    "options": ["30 ㎠", "60 ㎠", "80 ㎠", "16 ㎠"],
+    "answer": 1,
+    "explanation": "평행사변형의 넓이 = 밑변 × 높이 = 10 × 6 = 60 ㎠"
+  },
+  {
+    "id": 5,
+    "question": "민수의 4회에 걸친 수학 단원평가 점수가 다음과 같습니다. 평균 점수는 몇 점인가요?",
+    "prompt": "85점, 90점, 95점, 90점",
+    "image": "",
+    "options": ["88점", "90점", "92점", "95점"],
+    "answer": 1,
+    "explanation": "총점 = 85 + 90 + 95 + 90 = 360점 / 4회 = 90점"
+  },
+  {
+    "id": 6,
+    "question": "그림과 같이 빨간색 점선을 대칭축으로 하는 선대칭도형이 있습니다. 이 도형의 전체 둘레는 몇 cm인가요?",
+    "prompt": "",
+    "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120' width='100%' height='110'><line x1='100' y1='10' x2='100' y2='110' stroke='%23e53e3e' stroke-width='2' stroke-dasharray='4,4'/><polygon points='100,20 160,50 140,100 100,100 60,100 40,50' fill='%23f0fff4' stroke='%232f855a' stroke-width='2'/><text x='125' y='32' font-size='11' fill='%232f855a'>5cm</text><text x='155' y='80' font-size='11' fill='%232f855a'>7cm</text><text x='112' y='112' font-size='11' fill='%232f855a'>4cm</text></svg>",
+    "options": ["16 cm", "24 cm", "32 cm", "40 cm"],
+    "answer": 2,
+    "explanation": "대칭축을 기준으로 오른쪽 변의 길이가 5cm, 7cm, 4cm(반쪽 밑변)이므로 반쪽 둘레는 16cm입니다. 전체 둘레는 (5 + 7 + 4) × 2 = 32 cm입니다."
+  },
+  {
+    "id": 7,
+    "question": "다음 중에서 '일어날 가능성'이 '확실하다'에 해당하는 상황은 어느 것인가요?",
+    "prompt": "",
+    "image": "",
+    "options": [
+      "동전을 던지면 그림면이 나온다.",
+      "주사위를 던지면 7의 눈이 나온다.",
+      "내일 해가 동쪽에서 떠오른다.",
+      "흰 구슬만 든 주머니에서 검은 구슬을 꺼낸다."
+    ],
+    "answer": 2,
+    "explanation": "해가 동쪽에서 뜨는 것은 자연 현상으로 항상 '확실하다'입니다."
+  },
+  {
+    "id": 8,
+    "question": "대분수와 자연수의 곱셈을 계산해 보세요.",
+    "prompt": "$1 \\frac{2}{3} \\times 6$",
+    "image": "",
+    "options": ["8", "10", "12", "15"],
+    "answer": 1,
+    "explanation": "1과 2/3를 가분수로 바꾸면 5/3입니다. (5/3) × 6 = 10이 됩니다."
+  },
+  {
+    "id": 9,
+    "question": "밑변이 8cm이고 넓이가 24㎠인 삼각형의 높이는 몇 cm인가요?",
+    "prompt": "",
+    "image": "",
+    "options": ["3 cm", "6 cm", "8 cm", "12 cm"],
+    "answer": 1,
+    "explanation": "삼각형 넓이 = (밑변 × 높이) ÷ 2 ➔ 24 = (8 × 높이) ÷ 2 ➔ 8 × 높이 = 48 ➔ 높이 = 6 cm"
+  },
+  {
+    "id": 10,
+    "question": "다음 소수의 곱셈 결과 중 가장 큰 값을 가진 것은 무엇인가요?",
+    "prompt": "",
+    "image": "",
+    "options": [
+      "$0.4 \\times 0.5$",
+      "$1.2 \\times 0.3$",
+      "$0.8 \\times 0.6$",
+      "$2.5 \\times 0.1$"
+    ],
+    "answer": 2,
+    "explanation": "① 0.2, ② 0.36, ③ 0.48, ④ 0.25이므로 가장 큰 값은 0.48입니다."
+  }
+]
