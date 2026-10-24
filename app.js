@@ -31,10 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(error);
     });
 
-  // 수식 인라인 formatting ($ 제거)
-  function formatMath(text) {
+  // LaTeX 수식($...$)을 HTML로 변환하는 함수
+  function renderLatex(text) {
     if (!text) return '';
-    return text.replace(/\$/g, '');
+    return text.replace(/\$(.*?)\$/g, (match, formula) => {
+      if (window.katex) {
+        try {
+          return katex.renderToString(formula, { throwOnError: false });
+        } catch (e) {
+          return formula;
+        }
+      }
+      return formula;
+    });
   }
 
   // 문제 렌더링
@@ -46,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
     progressBar.style.width = `${progressPercent}%`;
     questionNumber.innerText = `문제 ${currentIndex + 1} / ${quizData.length}`;
 
-    // 문제 텍스트 및 프롬프트
-    questionText.innerText = formatMath(currentQuiz.question);
+    // 문제 텍스트 및 프롬프트 (수식 렌더링 적용)
+    questionText.innerHTML = renderLatex(currentQuiz.question);
     
     if (currentQuiz.prompt) {
-      questionPrompt.innerText = formatMath(currentQuiz.prompt);
+      questionPrompt.innerHTML = renderLatex(currentQuiz.prompt);
       questionPrompt.style.display = 'block';
     } else {
-      questionPrompt.innerText = '';
+      questionPrompt.innerHTML = '';
       questionPrompt.style.display = 'none';
     }
 
@@ -66,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       imageContainer.style.display = 'none';
     }
 
-    // 보기 버튼 생성
+    // 보기 버튼 생성 (수식 렌더링 적용)
     optionsContainer.innerHTML = '';
     currentQuiz.options.forEach((opt, idx) => {
       const button = document.createElement('button');
@@ -74,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (userAnswers[currentIndex] === idx) {
         button.classList.add('selected');
       }
-      button.innerText = `${idx + 1}. ${formatMath(opt)}`;
+      button.innerHTML = `${idx + 1}. ${renderLatex(opt)}`;
       button.addEventListener('click', () => selectOption(idx));
       optionsContainer.appendChild(button);
     });
