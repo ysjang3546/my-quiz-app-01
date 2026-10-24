@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "question": "HTML의 역할은 무엇인가요?",
+    "answer": "웹 페이지의 구조와 콘텐츠의 뼈대를 정의하는 마크업 언어입니다."
+  },
+  {
+    "id": 2,
+    "question": "CSS의 역할은 무엇인가요?",
+    "answer": "HTML 요소들의 디자인, 색상, 배치 등 스타일을 담당합니다."
+  },
+  {
+    "id": 3,
+    "question": "JavaScript의 역할은 무엇인가요?",
+    "answer": "웹 페이지에 클릭 이벤트, 데이터 통신 등 동적인 기능을 부여합니다."
+  },
+  {
+    "id": 4,
+    "question": "JSON이란 무엇의 약자인가요?",
+    "answer": "JavaScript Object Notation의 약자로, 경량 데이터 교환 포맷입니다."
+  }
+]

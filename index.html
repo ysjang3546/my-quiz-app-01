@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학습 플래시카드</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>오늘의 학습 카드</h1>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <p id="counter" class="counter">0 / 0</p>
+    </header>
+
+    <main>
+      <!-- 카드를 클릭하면 뒤집어집니다 -->
+      <div id="card" class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="badge">문제</span>
+            <p id="question-text">문제를 불러오는 중...</p>
+            <span class="hint">클릭해서 정답 확인</span>
+          </div>
+          <div class="card-back">
+            <span class="badge">정답 / 해설</span>
+            <p id="answer-text">정답 영역</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="prev-btn" class="btn secondary">이전</button>
+        <button id="flip-btn" class="btn flip">카드 뒤집기</button>
+        <button id="next-btn" class="btn primary">다음</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
