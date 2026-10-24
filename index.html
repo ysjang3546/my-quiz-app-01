@@ -6,7 +6,7 @@
   <title>초5 수학 퀴즈</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- KaTeX 수식 라이브러리 추가 -->
+  <!-- KaTeX 수식 라이브러리 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
@@ -33,6 +33,12 @@
 
         <div id="options-container" class="options-group">
           <!-- 보기 버튼 생성 영역 -->
+        </div>
+
+        <!-- 즉시 피드백 및 해설 표시 영역 -->
+        <div id="feedback-box" class="feedback-box hidden">
+          <div id="feedback-title" class="feedback-title"></div>
+          <p id="feedback-explanation" class="feedback-explanation"></p>
         </div>
 
         <div class="nav-buttons">
